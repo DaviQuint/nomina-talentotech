@@ -9,16 +9,25 @@ Entradas:
                   Dias trabajados en el mes
 
 Calculos a realizar:
------------->     Salario devengado: se necesita salario diario
+------------>     [Funcion lista] Salario devengado: se necesita salario diario
                               Salario diario = Salario basico mensual / 30
                               Salario devengado = Salario diario x Dias trabajados
-                  Auxilio de transporte: Valor constante, solo se obtiene si el 
-                                         salario basico mensual es menor a 2 salarios basicos minimos
-                  Descuentos: Son constantes que son porcentajes (ambos 4%)
+                  [Funcion lista] Auxilio de transporte: Valor constante, solo se obtiene si el 
+                                                         salario basico mensual es menor a 2 salarios basicos minimos
+                  [Funcion lista] Descuentos: Son constantes que son porcentajes (ambos 4%)
                               Salud:   4%
                               Pension: 4%
                   Salario Neto:
                               Salario Neto = Salario devengado + Auxilio de transporte - (Salud + Pension)
+                  Totales:
+                              Total pagado por subsidio de transporte 
+                                        Sumar todos los "auxilios de transporte"
+                              Total descontado para Pension
+                                        Sumar todas las "pensiones"
+                              Total descontado para Salud
+                                        Sumar todas las "salud"
+                              Total nomina pagada
+                                        Sumar todas las "total nomina"
 
 Salidas:
 ------------>     Nombre del empleado
