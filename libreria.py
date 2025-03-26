@@ -99,7 +99,7 @@ def ingresar_datos(i):
 
     return datos #siempre regresa la tabla que contiene los datos de esta funcion
 
-#Funcion para calcular el salario devengado
+#Funcion para calcular el salario devengado (YA ESTA EDITADA)
 def salario_devengado(datos):
     salario_basico_mensual= datos["salario_basico_mensual"] #se obtiene el salario basico mensual de otra funcion
     salario_diario = salario_basico_mensual / 30 #se obtiene el salario basico usando datos anteriores
@@ -107,7 +107,7 @@ def salario_devengado(datos):
     salario_devengado = salario_diario * dias_trabajados_mes #Se calcula el salario que obtiene el trabajador segun los dias que trabajo y lo que recibiria normalmente
     return salario_devengado, dias_trabajados_mes #se retornan el salario devengado y los dias trabajados
 
-#funcion que valida si obtiene auxilio de transporte
+#funcion que valida si obtiene auxilio de transporte (YA ESTA EDITADA)
 def aux_transporte_valido(salario_basico, dias_trabajados_mes):
     dos_salarios_minimos = constantes.SALARIO_MINIMO * 2
     
