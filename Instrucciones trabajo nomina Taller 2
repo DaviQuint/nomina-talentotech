@@ -7,19 +7,18 @@ Entradas:
 ------------>     Nombre del usuario
                   Salario basico mensual
                   Dias trabajados en el mes
-                  Auxilio de transporte (Depende del trabajador)
 
 Calculos a realizar:
 ------------>     Salario devengado: se necesita salario diario
-                      Salario diario = Salario basico mensual / 30
-                      Salario devengado = Salario diario x Dias trabajados
+                              Salario diario = Salario basico mensual / 30
+                              Salario devengado = Salario diario x Dias trabajados
                   Auxilio de transporte: Valor constante, solo se obtiene si el 
                                          salario basico mensual es menor a 2 salarios basicos minimos
                   Descuentos: Son constantes que son porcentajes (ambos 4%)
                               Salud:   4%
                               Pension: 4%
                   Salario Neto:
-                      Salario Neto = Salario devengado + Auxilio de transporte - (Salud + Pension)
+                              Salario Neto = Salario devengado + Auxilio de transporte - (Salud + Pension)
 
 Salidas:
 ------------>     Nombre del empleado
@@ -28,10 +27,10 @@ Salidas:
                   Descuentos aplicados (Salud y Pension)
                   Salario neto
                   Totales:
-                      Total pagado por subsidio de transporte (todos los empleados)
-                      Total descontado para Pension
-                      Total descontado para Salud
-                      Total nomina pagada
+                              Total pagado por subsidio de transporte (todos los empleados)
+                              Total descontado para Pension
+                              Total descontado para Salud
+                              Total nomina pagada
 
 
 
@@ -41,8 +40,8 @@ Notas importantes:
                   Cada proceso debe tener una función propia
                   El salario basico debe estar entre 0 y 8.000.000
                   El auxilio de transporte solo se paga si el salario es menor a 2 salarios minimos
-                        Auxilio de transporte:  200.000
-                        Salario minimo:         1.423.500
-                        Dos salarios minimos:   2.847.000
+                              Auxilio de transporte:  200.000
+                              Salario minimo:         1.423.500
+                              Dos salarios minimos:   2.847.000
                   Se deben poder calcular multiples empleados hasta que el usuario decida salir (Otro Sí-No:?)
                   Usar Colorama y Tabulate.
