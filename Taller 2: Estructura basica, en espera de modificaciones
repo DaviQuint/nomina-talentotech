@@ -1,6 +1,6 @@
 #Taller 2 con algunas funciones y varios cambios
 
-#-------------Funcion principal:
+#-------------Funcion principal(Esperando cambios):
 def funcion_principal():
     while True: #ciclo que pide datos hasta "salir"
         datos_empleados = ingresar_datos() #Se ingresan los datos de entrada (nombre, salario
@@ -12,16 +12,22 @@ def funcion_principal():
 #-------------Funciones de input:
 
 #Pedir los datos al usuario
-def ingresar_datos():
-    datos_de_empleados = []
+def ingresar_datos(i):
+    datos_de_empleados[i] = {}
     datos_de_empleados["nombre"] = str(input("Nombre: \t\t", end=" ")
     datos_de_empleados["salario"] = str(input("Salario: \t\t", end=" ")
     datos_de_empleados["dias_trabajados"] = str(input("Dias trabajados: \t", end=" ")
 
     return datos_de_empleados
+# Hay que crear un diccionario que contenga los datos de input(ingresados) y los mande a otra funcion.
+# los datos de esta lista ayudaran haciendo todos los calculos del programa, por eso se deben guardar 
+# en un diccionario donde se puedan distinguir por empleado 1, 2 3 etc.
+
 
 #-------------Validaciones
 
+# Aqui iran todas las validaciones, entre ellas: Validacion de datos ingresados, validacion de auxilio de 
+# transporte; validacion de todo tipo de datos, entradas y salidas en general
 
 
 #-------------Funciones de calculo:
@@ -33,7 +39,7 @@ def calcular_salario_devengado(salario_basico, dias_laborados):
 #Aparte estan la funcion de descuentos y la de auxilio de transporte que ya estan listas: 
 Hay que preguntar que opinan de los cambios mostrados en libreria-nomina.py:
 
-def calcular_aux_transporte():
+def calcular_aux_transporte(): #Va en validaciones
 
 def descuentos():
 
