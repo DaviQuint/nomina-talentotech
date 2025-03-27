@@ -50,4 +50,71 @@ def calcular totales():
 def mostrar_tabla():
 
 def mostrar_totales():
+
+
+
+#### NUEVO #### Validaciones organizar arriba
+import os #para limpiar pantalla
+import constantes #Para llamar contantes
+from tabulate import tabulate #para la presentacion
+from colorama import Fore, Style, init 
+from typing import Dict, Any, Optional, List
+
+init(autoreset=True)
+
+#Diccionario para almacenar empleados
+empleados_registrados={}
+
+#Funcion para limpiar pantalla en este caso devuelve el nombre del sistema operativo y aplica el comando respectivo
+def limpiarPantalla ():
+    if os.name == 'nt':  # Para sistemas Windows
+        os.system('cls')
+    else:  # Para sistemas Unix/Linux/Mac
+        os.system('clear')
+
+
+### *** FUNCIONES DE VALIDACIONES *** ###
+#Funcion para validar el nombre del empleado
+def validar_nombre():
+    while True:
+        nombre=input("Nombre del empleado (o 'salir' para finalizar) :\n") #pide el nombre del empleado 
+        
+        if not nombre: #Para que no acepte vacios
+            print(Fore.RED + "Error: No puede estar el nombre vacio")
+        if nombre.lower() == "salir":
+            return None
+        
+        if all(caracter.isalpha() or caracter.isspace() for caracter in nombre):  # Para Asegurar que solo hallan letras y espacios
+            return nombre
+        print(Fore.RED + "Error: Ingrese un nombre valido (solo con letras)") #mensaje de error
+        
+
+
+#Funcion para validar el salario basico esta en el intervalo valido que es entre el salario minimo y 8.000.000
+def validar_salario_basico():
+    while True: 
+        try: 
+            salario = int(input("Salario Básico Mensual del Empleado: "))
+            if constantes.SALARIO_MINIMO <= salario <= 8000000:
+                return salario
+            print(Fore.RED + f"Error: Ingrese un salario entre {constantes.SALARIO_MINIMO} y 8.000.000 " )
+        except ValueError:
+            print(Fore.RED + "Error: Ingrese un número válido.")
+
+#Funcion para validar los dias trabajados, que no los dias de un mes
+def validar_dias_laborados():
+    while True:
+        try:
+            dias=int(input("Ingrese los dias laborados del mes: "))
+            if 0 <= dias <=30:
+                return dias
+            print(Fore.RED + "Error: Ingrese una cantidad entre 0 y 30")
+        except ValueError:
+            print(Fore.RED + "Error: Ingrese un número valido. ")
+
+
+
+    
+    
+
         
