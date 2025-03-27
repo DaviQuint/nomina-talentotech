@@ -114,7 +114,98 @@ def validar_dias_laborados():
 
 
 
+
+### FUNCIONES ORGANIZAR ARRIBA SEGUN CORRESPONDA
+### *** FUNCIONES DE CALCULOS *** #
+#Funcion para calcular auxilio de transporte
+def calcular_auxilio_transporte(salario_basico):
+    if salario_basico < (2*constantes.SALARIO_MINIMO):
+        return 200000 #valor auxilio transporte actual
+    else:
+        return 0
+
+#Funcion para calcular el salario devengado
+def calcular_salario_devengado(salario_basico, dias_laborados):
+    return round((salario_basico/30)*dias_laborados)
     
     
+#Funcion para calcular descuentos
+def calcular_descuentos(salario_devengado):
+    descuento_salud= salario_devengado*constantes.SALUD
+    descuento_pension=salario_devengado*constantes.PENSION
+    return descuento_salud, descuento_pension
+
+
+#Funcion para calcular salario neto
+def calcular_salario_neto(salario_devengado, AUX_TRANSPORTE, descuento_salud, descuento_pension):
+    return round(salario_devengado + AUX_TRANSPORTE - (descuento_salud + descuento_pension))
+
+
+### *** FUNCION PARA INGRESAR LOS DATOS ###
+def ingresar_datos():
+    empleado_ID=len(empleados_registrados)+1
+    nombre=validar_nombre()
+    if nombre is None:
+        return None #Salir del ingreso de datos
+
+    salario_basico = validar_salario_basico()
+    dias_laborados= validar_dias_laborados()
+    salario_devengado= calcular_salario_devengado(salario_basico, dias_laborados)
+    aux_transporte=calcular_auxilio_transporte(salario_basico)
+    descuento_salud, descuento_pension = calcular_descuentos(salario_devengado)
+    salario_neto=calcular_salario_neto(salario_devengado, aux_transporte, descuento_salud, descuento_pension)
+
+    empleado={
+        "Nombre": nombre,
+        "Salario Devengado": salario_devengado,
+        "Auxilio de Transporte": aux_transporte,
+        "Descuento Salud": descuento_salud,
+        "Descuento Pensión": descuento_pension,
+        "Salario Neto Recibido": salario_neto
+    }
+    
+    empleados_registrados[empleado_ID]=empleado
+    
+    return empleado
+
+# Funcion para mostrar en pantalla
+def mostrar_en_consola():
+    limpiarPantalla()
+    
+    if not empleados_registrados:
+        print(Fore.YELLOW + "No hay empleados registrados")
+        return
+    
+    tabla_datos_empleados=[]
+    total_aux_transporte = 0
+    total_salud = 0
+    total_pension = 0
+    total_nomina = 0
+    
+    for emp_ID, datos in empleados_registrados.items():
+        tabla_datos_empleados.append([
+            emp_ID, datos["Nombre"], datos["Salario Devengado"], datos["Auxilio de Transporte"], 
+            datos["Descuento Salud"], datos["Descuento Pensión"], datos["Salario Neto Recibido"]
+        ])
+        
+        # Acumulando correctamente los valores de cada empleado
+        total_aux_transporte += datos["Auxilio de Transporte"]
+        total_salud += datos["Descuento Salud"]
+        total_pension += datos["Descuento Pensión"]
+        total_nomina += datos["Salario Devengado"]
+
+    print(tabulate(tabla_datos_empleados, headers=[
+        Fore.CYAN + "ID", "Nombre", "Salario Devengado", "Auxilio de Transporte", 
+        "Descuento Salud", "Descuento Pensión", "Salario Neto Recibido"
+    ], tablefmt="grid"))
+    
+    # Mostrar totales correctamente
+    print(Fore.RED + f"Total Subsidio de Transporte:\t {total_aux_transporte}")
+    print(Fore.RED + f"Total Costos de Salud:\t {total_salud}")
+    print(Fore.RED + f"Total Costos de Pensión:\t {total_pension}")
+    print(Fore.RED + f"Total Nómina Pagada:\t {total_nomina}")
+    
+
+
 
         
