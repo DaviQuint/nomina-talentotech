@@ -18,3 +18,8 @@ def nomina():
 if __name__ == "__main__":
     nomina()
 
+# Esta bien, aunque falta algo:
+# Falta la validacion para que lo que se ingrese sea una opcion valida.
+# En resumen, falta una validacion para cuando ingrese 'n' y si ingresa otra cosa no aceptarla
+# ademas del hecho de intentar separar las validaciones en otra funcion (Podemos modificarlo luego)
+# creo que esta bastante bien para trabajar en torno a esta funcion
