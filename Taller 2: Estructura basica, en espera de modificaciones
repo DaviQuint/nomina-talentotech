@@ -1,0 +1,51 @@
+#Taller 2 con algunas funciones y varios cambios
+
+#-------------Funcion principal:
+def funcion_principal():
+    while True: #ciclo que pide datos hasta "salir"
+        datos_empleados = ingresar_datos() #Se ingresan los datos de entrada (nombre, salario y dias trabajados) dentro del bucle y se añaden a la lista
+        devengado = calcular_salario_devengado( datos_de_empleados["salario"] , datos_de_empleados["dias_trabajados"] )
+        neto = calcular_salario_neto()
+
+
+#-------------Funciones de input:
+
+#Pedir los datos al usuario
+def ingresar_datos():
+    datos_de_empleados = []
+    datos_de_empleados["nombre"] = str(input("Nombre: \t\t", end=" ")
+    datos_de_empleados["salario"] = str(input("Salario: \t\t", end=" ")
+    datos_de_empleados["dias_trabajados"] = str(input("Dias trabajados: \t", end=" ")
+
+    return datos_de_empleados
+
+#-------------Validaciones
+
+
+
+#-------------Funciones de calculo:
+
+#Funcion para calcular el salario devengado
+def calcular_salario_devengado(salario_basico, dias_laborados):
+    return ((salario_basico/30)*dias_laborados)
+
+#Aparte estan la funcion de descuentos y la de auxilio de transporte que ya estan listas: Hay que preguntar que opinan de los cambios mostrados en libreria-nomina.py:
+
+def calcular_aux_transporte():
+
+def descuentos():
+
+
+def calcular_salario_neto(devengado, descuentos):
+
+def calcular_nomina_total():
+
+def calcular totales():
+
+
+#-------------Funcion de print:
+
+def mostrar_tabla():
+
+def mostrar_totales():
+        
