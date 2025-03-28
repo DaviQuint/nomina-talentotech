@@ -1,5 +1,23 @@
 #Taller 2 con algunas funciones y varios cambios
 
+
+#-------------Otro archivo: Constantes:
+# Constantes
+AUX_TRANSPORTE = 200000 #Auxilio de transporte 2025 en Colombia
+SALARIO_MINIMO = 1423500 #Salario minimo 2025 en Colombia
+SALUD = 0.04 # 4% del salario devengado sin contar auxilio de transporte
+PENSION = 0.04
+
+
+#-------------Import:
+import os #para limpiar pantalla
+import constantes #Para llamar contantes
+from tabulate import tabulate #para la presentacion
+from colorama import Fore, Style, init 
+from typing import Dict, Any, Optional, List
+
+init(autoreset=True)
+
 #-------------Funcion principal(Esperando cambios):
 def funcion_principal():
     while True: #ciclo que pide datos hasta "salir"
@@ -11,23 +29,66 @@ def funcion_principal():
 
 #-------------Funciones de input:
 
-#Pedir los datos al usuario
-def ingresar_datos(i):
-    datos_de_empleados[i] = {}
-    datos_de_empleados["nombre"] = str(input("Nombre: \t\t", end=" ")
-    datos_de_empleados["salario"] = str(input("Salario: \t\t", end=" ")
-    datos_de_empleados["dias_trabajados"] = str(input("Dias trabajados: \t", end=" ")
-
-    return datos_de_empleados
 # Hay que crear un diccionario que contenga los datos de input(ingresados) y los mande a otra funcion.
 # los datos de esta lista ayudaran haciendo todos los calculos del programa, por eso se deben guardar 
 # en un diccionario donde se puedan distinguir por empleado 1, 2 3 etc.
+
+def ingresar_nombre():
+    while True
+        nombre=input("Nombre del empleado (o 'salir' para finalizar) :\n") #pide el nombre del empleado 
+        if validar_nombre(nombre) is True:
+            return nombre
+
+def ingresar_salario():
+    while True:
+        try:
+            salario = int(input("Salario Básico Mensual del Empleado: "))
+            if validar_salario(salario) is True:
+                return salario
+        Except ValueError:
+            print(Fore.RED + "Error: Ingrese un número válido.")
+
+def ingresar_dias_trabajados():
+    while True:
+        try:
+            dias=int(input("Ingrese los dias laborados del mes: "))
+            if validar_dias_laborados(dias) is True:
+                return dias
+        except ValueError:
+            print(Fore.RED + "Error: Ingrese un número valido. ")
 
 
 #-------------Validaciones
 
 # Aqui iran todas las validaciones, entre ellas: Validacion de datos ingresados, validacion de auxilio de 
 # transporte; validacion de todo tipo de datos, entradas y salidas en general
+
+#Validacion del auxilio de transporte
+def validar_auxilio_transporte(salario_basico):
+    if salario_basico < (2*SALARIO_MINIMO):
+        return 200000 #valor auxilio transporte actual
+    else:
+        return 0
+
+#Validacion de nombre:
+def validar_nombre(nombre):
+        if not nombre: #Para que no acepte vacios                                   
+            print(Fore.RED + "Error: No puede estar el nombre vacio")
+        if all(caracter.isalpha() or caracter.isspace() for caracter in nombre):  # Para Asegurar que solo hallan letras y espacios
+            return True
+        else:
+            print(Fore.RED + "Error: Ingrese un nombre valido (solo con letras)") #mensaje de error
+
+#Funcion para validar el salario basico esta en el intervalo valido que es entre el salario minimo y 8.000.000
+def validar_salario_basico(salario):
+    if constantes.SALARIO_MINIMO <= salario <= 8000000:
+        return True
+    print(Fore.RED + f"Error: Ingrese un salario entre {constantes.SALARIO_MINIMO} y 8.000.000 " )
+
+def validar_dias_laborados(dias):
+    if 0 <= dias <=30:
+        return True
+    print(Fore.RED + "Error: Ingrese una cantidad entre 0 y 30")
 
 
 #-------------Funciones de calculo:
@@ -36,15 +97,14 @@ def ingresar_datos(i):
 def calcular_salario_devengado(salario_basico, dias_laborados):
     return ((salario_basico/30)*dias_laborados)
 
-#Aparte estan la funcion de descuentos y la de auxilio de transporte que ya estan listas: 
-Hay que preguntar que opinan de los cambios mostrados en libreria-nomina.py:
+def calcular_descuentos(salario_devengado):
+    descuento_salud= salario_devengado*SALUD
+    descuento_pension=salario_devengado*PENSION
+    return descuento_salud, descuento_pension
 
-def calcular_aux_transporte(): #Va en validaciones
-
-def descuentos():
-
-
-def calcular_salario_neto(devengado, descuentos):
+#Funcion para calcular salario neto
+def calcular_salario_neto(salario_devengado, AUX_TRANSPORTE, descuento_salud, descuento_pension):
+    return round(salario_devengado + AUX_TRANSPORTE - (descuento_salud + descuento_pension))
 
 def calcular_nomina_total():
 
@@ -53,13 +113,25 @@ def calcular totales():
 
 #-------------Funcion de print:
 
+def limpiarPantalla ():
+    if os.name == 'nt':  # Para sistemas Windows
+        os.system('cls')
+    else:  # Para sistemas Unix/Linux/Mac
+        os.system('clear')
+
 def mostrar_tabla():
 
 def mostrar_totales():
 
 
 
-#### NUEVO #### Validaciones organizar arriba
+
+
+
+Programa: obtener funciones de aquí
+
+
+////#### NUEVO #### Validaciones organizar arriba
 import os #para limpiar pantalla
 import constantes #Para llamar contantes
 from tabulate import tabulate #para la presentacion
@@ -68,35 +140,56 @@ from typing import Dict, Any, Optional, List
 
 init(autoreset=True)
 
-#Diccionario para almacenar empleados
-empleados_registrados={}
 
-#Funcion para limpiar pantalla en este caso devuelve el nombre del sistema operativo y aplica el comando respectivo
-def limpiarPantalla ():
+    falta-----            #Diccionario para almacenar empleados
+    falta-----            empleados_registrados={}
+
+
+////#Funcion para limpiar pantalla en este caso devuelve el nombre del sistema operativo y aplica el comando respectivo
+////def limpiarPantalla ():
     if os.name == 'nt':  # Para sistemas Windows
         os.system('cls')
     else:  # Para sistemas Unix/Linux/Mac
         os.system('clear')
 
 
-### *** FUNCIONES DE VALIDACIONES *** ###
-#Funcion para validar el nombre del empleado
+////### *** FUNCIONES DE VALIDACIONES *** ###
+////#Funcion para validar el nombre del empleado
 def validar_nombre():
-    while True:
+    while True:  #Segun lo que nos dijo el profesor "nomina.py es el programa principal y en este deberia estar el bucle de continuacion y el llamado a las funciones y en libreria las definiciones de funciones personlizadas"
         nombre=input("Nombre del empleado (o 'salir' para finalizar) :\n") #pide el nombre del empleado 
         
-        if not nombre: #Para que no acepte vacios
+        if not nombre: #Para que no acepte vacios                                    #Tengo dudas si funciona... una variable vacia seria "not variable" en un if?
             print(Fore.RED + "Error: No puede estar el nombre vacio")
-        if nombre.lower() == "salir":
+        elif nombre.lower() == "salir":
             return None
-        
-        if all(caracter.isalpha() or caracter.isspace() for caracter in nombre):  # Para Asegurar que solo hallan letras y espacios
+        elif all(caracter.isalpha() or caracter.isspace() for caracter in nombre):  # Para Asegurar que solo hallan letras y espacios
             return nombre
-        print(Fore.RED + "Error: Ingrese un nombre valido (solo con letras)") #mensaje de error
+        else:
+            print(Fore.RED + "Error: Ingrese un nombre valido (solo con letras)") #mensaje de error
         
+////#intento de cambio de validar_nombre, dos funciones:
+////def validar_nombre(nombre):
+        if not nombre: #Para que no acepte vacios                                   
+            print(Fore.RED + "Error: No puede estar el nombre vacio")
+        elif nombre.lower() == "salir":
+            return None
+        elif all(caracter.isalpha() or caracter.isspace() for caracter in nombre):  # Para Asegurar que solo hallan letras y espacios
+            return True
+        else:
+            print(Fore.RED + "Error: Ingrese un nombre valido (solo con letras)") #mensaje de error
+
+////def ingresar_nombre():
+    while True
+        nombre = input("Nombre del empleado (o 'salir' para finalizar) :\n") #pide el nombre del empleado 
+        if validar_nombre(nombre) is True:
+            return nombre
+        elif validar_nombre(nombre) is None:
+            break===========================================================================================================================================================================================
 
 
-#Funcion para validar el salario basico esta en el intervalo valido que es entre el salario minimo y 8.000.000
+
+////#Funcion para validar el salario basico esta en el intervalo valido que es entre el salario minimo y 8.000.000
 def validar_salario_basico():
     while True: 
         try: 
@@ -107,8 +200,26 @@ def validar_salario_basico():
         except ValueError:
             print(Fore.RED + "Error: Ingrese un número válido.")
 
-#Funcion para validar los dias trabajados, que no los dias de un mes
-def validar_dias_laborados():
+////#Cambios de funcion para validar el salario basico.
+def validar_salario_basico(salario):
+    if constantes.SALARIO_MINIMO <= salario <= 8000000:
+        return True
+    print(Fore.RED + f"Error: Ingrese un salario entre {constantes.SALARIO_MINIMO} y 8.000.000 " )
+    
+////def ingresar_salario():
+    while True:
+        try:
+            salario = int(input("Salario Básico Mensual del Empleado: "))
+            if validar_salario(salario) is True:
+                return salario
+        Except ValueError:
+            print(Fore.RED + "Error: Ingrese un número válido.")
+
+
+
+
+////#Funcion para validar los dias trabajados, no los dias de un mes
+////def validar_dias_laborados():
     while True:
         try:
             dias=int(input("Ingrese los dias laborados del mes: "))
@@ -118,33 +229,49 @@ def validar_dias_laborados():
         except ValueError:
             print(Fore.RED + "Error: Ingrese un número valido. ")
 
+////#Separando input de validacion dias laborados
+////def validar_dias_laborados(dias):
+    if 0 <= dias <=30:
+        return True
+    print(Fore.RED + "Error: Ingrese una cantidad entre 0 y 30")
 
-
+////def ingresar_dias_trabajados():
+    while True:
+        try:
+            dias=int(input("Ingrese los dias laborados del mes: "))
+            if validar_dias_laborados(dias) is True:
+                return dias
+        except ValueError:
+            print(Fore.RED + "Error: Ingrese un número valido. ")
 
 ### FUNCIONES ORGANIZAR ARRIBA SEGUN CORRESPONDA
 ### *** FUNCIONES DE CALCULOS *** #
-#Funcion para calcular auxilio de transporte
-def calcular_auxilio_transporte(salario_basico):
+////#Funcion para calcular auxilio de transporte
+////def calcular_auxilio_transporte(salario_basico): #Va en validaciones
     if salario_basico < (2*constantes.SALARIO_MINIMO):
         return 200000 #valor auxilio transporte actual
     else:
         return 0
 
-#Funcion para calcular el salario devengado
-def calcular_salario_devengado(salario_basico, dias_laborados):
+
+////#Funcion para calcular el salario devengado
+////def calcular_salario_devengado(salario_basico, dias_laborados):
     return round((salario_basico/30)*dias_laborados)
     
     
-#Funcion para calcular descuentos
-def calcular_descuentos(salario_devengado):
+
+////#Funcion para calcular descuentos
+////def calcular_descuentos(salario_devengado):
     descuento_salud= salario_devengado*constantes.SALUD
     descuento_pension=salario_devengado*constantes.PENSION
     return descuento_salud, descuento_pension
 
 
-#Funcion para calcular salario neto
-def calcular_salario_neto(salario_devengado, AUX_TRANSPORTE, descuento_salud, descuento_pension):
+
+////#Funcion para calcular salario neto
+////def calcular_salario_neto(salario_devengado, AUX_TRANSPORTE, descuento_salud, descuento_pension):
     return round(salario_devengado + AUX_TRANSPORTE - (descuento_salud + descuento_pension))
+
 
 
 ### *** FUNCION PARA INGRESAR LOS DATOS ###
@@ -174,7 +301,30 @@ def ingresar_datos():
     
     return empleado
 
-# Funcion para mostrar en pantalla
+--------------------------------------------------------------------
+#Lo mismo de arriba pero con cambios
+### *** FUNCION PARA INGRESAR LOS DATOS ###
+
+#En teoria la funcion para "salir" del programa deberia estar en nomina.py porque en nomina.py se realiza un bucle que pide todos los datos.
+#nomina.py se verá así:
+
+import libreria
+
+print("Este programa tiene la función de calcular el saldo de los trabajadores ingresados.\n")
+
+while True:
+    nombre = ingresar_nombre()
+    if nombre.lower() == "salir":
+        salario = ingresar_salario()
+        dias_trabajados = ingresar_dias_trabajados()
+
+
+
+------------------------------------------------------------------
+
+
+
+# Funcion para mostrar en pantalla              Muchas cosas, demasiadas en una sola funcion, hay que ver si se pueden separar
 def mostrar_en_consola():
     limpiarPantalla()
     
@@ -204,7 +354,8 @@ def mostrar_en_consola():
         Fore.CYAN + "ID", "Nombre", "Salario Devengado", "Auxilio de Transporte", 
         "Descuento Salud", "Descuento Pensión", "Salario Neto Recibido"
     ], tablefmt="grid"))
-    
+
+
     # Mostrar totales correctamente
     print(Fore.RED + f"Total Subsidio de Transporte:\t {total_aux_transporte}")
     print(Fore.RED + f"Total Costos de Salud:\t {total_salud}")
